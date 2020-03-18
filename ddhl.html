@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Styled Map Types</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div id="map"></div>
+
+    <script>
+      function initMap() {
+
+        // Create a new StyledMapType object, passing it an array of styles,
+        // and the name to be displayed on the map type control.
+        var styledMapType = new google.maps.StyledMapType(
+            [
+              {
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#444444"
+                  }
+                ]
+              },
+              {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                  {
+                    "color": "#f2f2f2"
+                  }
+                ]
+              },
+              {
+                "featureType": "landscape",
+                "elementType": "labels.text",
+                "stylers": [
+                  {
+                    "visibility": "on"
+                  },
+                  {
+                    "hue": "#ff0000"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                  {
+                    "saturation": -100
+                  },
+                  {
+                    "lightness": 45
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "all",
+                "stylers": [
+                  {
+                    "visibility": "simplified"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.arterial",
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit",
+                "elementType": "all",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                  {
+                    "color": "#6AD0F4"
+                  },
+                  {
+                    "visibility": "on"
+                  }
+                ]
+              }
+            ],
+            {name: 'Styled Map'});
+
+        // Create a map object, and include the MapTypeId to add
+        // to the map type control.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: { 
+            lat: 55.163482, 
+            lng: 61.431090
+          },
+          zoom: 7,
+          zoomControl: true,
+          streetViewControl: false,
+          mapTypeControl: false,
+          scaleControl: true
+        });
+
+        var image = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCAxOSA0MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeT0iMC4zNTI5NzQiIHdpZHRoPSIxOSIgaGVpZ2h0PSI0MCIgcng9IjkuNDk5OTkiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xOC45Mzg3IDM2LjEzMjNDMTguNzQyNyAzOC40NzA0IDE2LjM2OTUgNDAuMzUzIDE0LjAzMjcgNDAuMzUzSDQuOTY3MzJDMy41ODE5NSA0MC4zNTMgMS45OTYxMSAzOS41OTM1IDEuMTgyMzYgMzguNTg2N0wxOC45Mzg3IDM2LjEzMjNaIiBmaWxsPSIjN0M3MEIwIi8+CjxwYXRoIGQ9Ik0wIDQuNjUxMjFDMC41MDM3MjggMi40NTQ0NSAyIDAuNDI2MDU3IDQuOTY3MzIgMC4zNTI5NzRIMTQuMDMyN0MxNS44NTgyIDAuMzUyOTc0IDE3Ljk4NzMgMS41NTQ2OSAxOC42MTgxIDMuNDExMjlMMCA0LjY1MTIxWiIgZmlsbD0iIzdDNzBCMCIvPgo8cGF0aCBkPSJNMTkgMjguMjU0MlYzNC45MjA5TDAuNDM0NjQgMzcuNTEzNUMtMi4zNjg2ZS0wNyAzNi42NDkzIDAgMzUuMjkxMiAwIDM1LjI5MTJWMjcuMTQzMUwxOSAyOC4yNTQyWiIgZmlsbD0iI0U0MDk3RiIvPgo8cGF0aCBkPSJNMTIuNTQyNSAyMC4zNTNDMTIuNTQyNSAyMS45ODk0IDExLjIwODEgMjMuMzE1OSA5LjU2MjA5IDIzLjMxNTlDNy45MTYwNiAyMy4zMTU5IDYuNTgxNyAyMS45ODk0IDYuNTgxNyAyMC4zNTNDNi41ODE3IDE4LjcxNjYgNy45MTYwNiAxNy4zOSA5LjU2MjA5IDE3LjM5QzExLjIwODEgMTcuMzkgMTIuNTQyNSAxOC43MTY2IDEyLjU0MjUgMjAuMzUzWiIgZmlsbD0iIzI4MjgyNSIvPgo8cGF0aCBkPSJNNS45OTcwMSAyMi4zMjg4TDAgMjMuNDM5NFYyNS45NTQzTDE5IDI2Ljk0MlYxOS45MjA5TDEzLjY2NyAyMC45MDg1QzEzLjM5MzYgMjIuODk1NyAxMS42NzQgMjQuNDI3IDkuNTkzNDQgMjQuNDI3QzguMDQ2MjcgMjQuNDI3IDYuNjk4NyAyMy41ODAyIDUuOTk3MDEgMjIuMzI4OFoiIGZpbGw9IiNDQjU0OTgiLz4KPHBhdGggZD0iTTE5IDE0Ljg1OTFMMCAxNi40NjQxVjIxLjg5NjJMNS41MTUzOCAyMC44NzQ4QzUuNDkzMzMgMjAuNzA0IDUuNDgxOTcgMjAuNTI5OCA1LjQ4MTk3IDIwLjM1M0M1LjQ4MTk3IDE4LjEwMjkgNy4zMjI3NCAxNi4yNzg5IDkuNTkzNDQgMTYuMjc4OUMxMS41MjU4IDE2LjI3ODkgMTMuMTQ2OCAxNy41OTk4IDEzLjU4NyAxOS4zODAxTDE5IDE4LjM3NzdWMTQuODU5MVoiIGZpbGw9IiNGQkVBMDYiLz4KPHBhdGggZD0iTTAgNS43ODUwN0wxOC45NTMxIDQuNjU0MUMxOC45ODgzIDQuODU3MDMgMTkgNS4xODcxMiAxOSA1LjE4NzEyVjEzLjUwMTFMMCAxNC45MjA5VjUuNzg1MDdaIiBmaWxsPSIjNjBCOEM0Ii8+Cjwvc3ZnPgo=';
+        var city_image = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCAyNSA0MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik0xNC42NTg4IDE3LjU5MzNDMTQuNzU1OCAxNy41OTMzIDE0Ljg1MTkgMTcuNTg4NSAxNC45NDYyIDE3LjU3ODdDMTUuMTM1MyAxNy41NTk3IDE1LjMxOSAxNy41MjE2IDE1LjQ5NTMgMTcuNDY2N0MxNi42NDA4IDE3LjExMDIgMTcuNDczNyAxNi4wNDA5IDE3LjQ3MzcgMTQuNzgwMkMxNy40NzM3IDEzLjIyNTEgMTYuMjExNyAxMS45NjQ0IDE0LjY1ODggMTEuOTY0NEMxMy4xMDU5IDExLjk2NDQgMTEuODQzOSAxMy4yMjYgMTEuODQzOSAxNC43ODAyQzExLjg0MzkgMTYuMzMyMiAxMy4xMDU5IDE3LjU5MzMgMTQuNjU4OCAxNy41OTMzWiIgZmlsbD0iIzE3MTkyMiIvPgo8cGF0aCBkPSJNMTguODIwNyAzNy40OTE3QzE4Ljg1MzEgMzguMzMzOSAxOS41NSAzOC45OTEgMjAuMzkyMyAzOC45NTg3QzIxLjIzNDUgMzguOTI2MyAyMS44Nzg3IDM4LjI1NDIgMjEuODQ2NCAzNy40MTE5TDIxLjU2MTMgMjkuNzAzMkgyMS41NjIxTDE4Ljg4OTQgMjUuMjM0NEwxOS41ODI0IDIxLjg0MjVDMTkuNTgyNCAyMS44NDI1IDE5LjkyODYgMTkuNDExNSAxOC45Nzc1IDE4LjU0NjNDMTguNDk1MyAxOC4xMDc5IDE3Ljk5MTQgMTcuNTU0NCAxNy42MTE0IDE3LjExOTFDMTYuOTIxMSAxNy45ODk3IDE1Ljg1NDggMTguNTQ3MiAxNC42NTk3IDE4LjU0NzJDMTIuNTgzIDE4LjU0NzIgMTAuODkzMiAxNi44NTc0IDEwLjg5MzIgMTQuNzgxNUMxMC44OTMyIDE0LjQ4NCAxMC45MjkxIDE0LjE5NDQgMTAuOTk0MiAxMy45MTY3TDYuODk5NTYgMTEuMDc1M0M2LjUzMDcgMTAuODE5MyA2LjA5MTg5IDEwLjc1MDcgNS42ODg0OSAxMC44NDI0TDQuMDczMTQgNy4xNTM3OUM0LjE0NTc2IDcuMTA3NzQgMy41OTkzNCA2LjI5NTY0IDMuODYyMzcgNS42NDg3TDUuNTEzMTQgMi4yNzU0MkM1LjU4MzU1IDIuMDk3ODUgNS43NzI2MiAxLjc4NTIzIDUuMzk4MDEgMS4zNTI2MUw0LjkzNTcyIDAuOTUxODc1QzQuNzU4MTYgMC44ODE0NjkgNC41NTcxMyAwLjk2ODI1OCA0LjQ4NjcyIDEuMTQ1ODJMMi41MTg0NSA1LjgwMzI0QzIuNDc3NzIgNS45MDY0MSAyLjU3MjAzIDYuMTYyMzUgMi42OTIwMyA2LjM3NDAyTDQuODY5NzUgMTEuMzQ2M0M0Ljg0MDk2IDExLjM4MDggNC44MDgyIDExLjQxMDkgNC43ODIwNyAxMS40NDlDNC4zMDE2MyAxMi4xNDE1IDQuNDA1MjQgMTMuMDgyMSA1LjA5Nzc5IDEzLjU2MjVMNi4xNzExNSAxNC4zMTg0TDkuOTIwODIgMjIuODhMNS4wMDU2OSAzMS4zMDM5TDEuOTI0MjEgMzYuMTQ5MUMxLjQ2ODEyIDM2Ljg1OCAxLjY4MDY3IDM3Ljc5NTQgMi4zODkxNiAzOC4yNTE1QzMuMDk4MDkgMzguNzA3NiA0LjA0MDgyIDM4LjQ5NTkgNC40OTY5IDM3Ljc4N0w4LjUwODI3IDMxLjU1OThMMTQuMzkgMjguMTM4M0wxOC41OTc2IDMxLjM4ODVMMTguODIwNyAzNy40OTE3Wk0xMC4xODM0IDE3LjE0MzVWMjEuMTA3OUw3LjY3MzE0IDE1LjM3NThMMTAuMTgzNCAxNy4xNDM1WiIgZmlsbD0iIzE3MTkyMiIvPgo8cGF0aCBkPSJNMjMuMDU2NiAzOC44MDcyQzIyLjkxNjcgMzkuNTM5NiAyMi4yMDM4IDQwLjAxMjUgMjEuNDc3NiAzOS44NzA0TDE3LjE0ODcgMzkuMDU2NUwxNi45ODI3IDM5Ljk0NzlMMjEuMzAzNSA0MC43Njc1QzIyLjUyNjEgNDEuMDAxNyAyMy43MDc1IDQwLjIwNzQgMjMuOTQ0IDM4Ljk4MDhMMjMuMDU2NiAzOC44MDcyWiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTAuODUxMjk0IDM5LjY0NTlMMS42NzEzNyA0MC4xMjg2TDIuNDE3MDUgMzkuMDM0NEwxLjU5Njk4IDM4LjU1MTdMMC44NTEyOTQgMzkuNjQ1OVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0xMS42OTczIDM4LjU1NzVDMTEuMDc3NCAzOC41NTc1IDEwLjU2MjQgMzguNjczMSAxMC40NTQgMzguODI1NEMxMC40NTQgMzguODI1NCAxMC40MzE4IDM5LjY2MjcgMTAuNDMxOCAzOS42NzAzQzEwLjQzMTggMzkuODUwOSAxMC45OTg2IDM5Ljk5NzUgMTEuNjk3MyAzOS45OTc1QzEyLjM5NjEgMzkuOTk3NSAxMi45NjI5IDM5Ljg1MDkgMTIuOTYyOSAzOS42NzAzQzEyLjk2MjkgMzkuNjYyNyAxMi45NDA3IDM4LjgyNTQgMTIuOTQwNyAzOC44MjU0QzEyLjgzMjMgMzguNjczMSAxMi4zMTczIDM4LjU1NzUgMTEuNjk3MyAzOC41NTc1WiIgZmlsbD0iYmxhY2siLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMCI+CjxyZWN0IHg9IjAuNzM2OTA0IiB5PSIwLjkyMDg3NCIgd2lkdGg9IjIzLjMyMSIgaGVpZ2h0PSI0MCIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K';
+
+        var infoWin = new google.maps.InfoWindow();
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+
+        var markers = locations.map(function(location, i) {
+          var marker = new google.maps.Marker({
+            position: location,
+            title: labels[i],
+            icon: image,
+          });
+          google.maps.event.addListener(marker, 'click', function(evt) {
+            infoWin.setContent(location.info);
+            infoWin.open(map, marker);
+          })
+          return marker;
+        });
+
+        var markers_cities = promising_cities.map(function(location, i) {
+          var marker = new google.maps.Marker({
+            position: location,
+            title: location.info,
+            icon: city_image,
+            map: map
+          });
+          google.maps.event.addListener(marker, 'click', function(evt) {
+            infoWin.setContent("<div id='content' style='max-width: 345px'><h2>Готовы начать тренировки в&nbsp;вашем городе!</h2>Если вы&nbsp;хотите, чтобы ваш ребенок занимался хоккеем бесплатно и&nbsp;на&nbsp;регулярной основе в&nbsp;своем или соседнем дворе, то ждем адреса потенциальных площадок на&nbsp;<a href='mailto:info@ddhl.ru'>info@ddhl.ru</a> либо по&nbsp;телефону <a href='tel:+79323028769'>+7 (932) 302-87-69</a>. Критерии по&nbsp;отбору хоккейных площадок для проведения тренировок: целые борта, освещение, возможность организации раздевалки для детей в&nbsp;соседних домах.<br><br><a href='http://ddhl.ru/kontakty/'>Контактная информация</a><br><br><img src='https://marvie.dev.veliteq.com/ddhl/photo5431848618630950153.jpg'></div>");
+            infoWin.open(map, marker);
+          })
+          return marker;
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        
+        //Associate the styled map with the MapTypeId and set it to display.
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+      }
+
+      var promising_cities = [
+        { // Екатеринбург
+          lat: 56.838011, 
+          lng: 60.597465,
+          info: "Екатеринбург"
+        },
+        { // Пермь
+          lat: 58.010450, 
+          lng: 56.229434,
+          info: "Пермь"
+        }, 
+        { // Тюмень
+          lat: 57.153033, 
+          lng: 65.534328,
+          info: "Тюмень"
+        },
+        { // Курган
+          lat: 55.441004, 
+          lng: 65.341118,
+          info: "Курган"
+        },
+        { // Уфа
+          lat: 54.735147, 
+          lng: 55.958727,
+          info: "Уфа"
+        }
+      ];
+
+      var locations = [
+        { // Копейск, пр. Славы, 16
+          lat: 55.104847, 
+          lng: 61.607895,
+          info: "<div id='content'><h2>пр. Славы, 16</h2>Копейск, Челябинская область<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_a76fd1a3642fb40c4d078c93d42d97df.jpg'></div>"
+        },    
+        { // Челябинск, Копейское шоссе, 39б 
+          lat: 55.139936, 
+          lng: 61.452168,
+          info: "<div id='content'><h2>Копейское шоссе, 39б</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_642f48dc46c0f2dbb646ef6a810b6aec.jpg'></div>"
+        },     
+        { // Челябинск, ул. 3-го Интернационала, 61 (школа №8)
+          lat: 55.172614, 
+          lng: 61.422415,
+          info: "<div id='content'><h2>ул. 3-го Интернационала, 61 (школа №8)</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_a14169ff36cfd39c76414b90d05a1470.jpg'></div>"
+        },
+        { // Челябинск, ул. Коммунистическая, 7
+          lat: 55.260101, 
+          lng: 61.400013,
+          info: "<div id='content'><h2>ул. Коммунистическая, 7</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_0b6d39a88293eb7ca6b03b18be8f7c55.jpg'></div>"
+        },
+        { // Челябинск, пос. Благодатово
+          lat: 55.158633,
+          lng: 61.315318,
+          info: "<div id='content'><h2>пос. Благодатово</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/photo5431848618630950153.jpg'></div>"
+        },
+        { // Челябинск, ул. Российская, 258
+          lat: 55.153097,
+          lng: 61.417470,
+          info: "<div id='content'><h2>ул. Российская, 258</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/photo5431848618630950153.jpg'></div>"
+        },
+        { // Челябинск, ул. Бейвеля, 116
+          lat: 55.218472,
+          lng: 61.295044,
+          info: "<div id='content'><h2>ул. Бейвеля, 116</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_04b8151370ad1bdb222eeb1d4c70e239.jpg'></div>"
+        },     
+        { // Челябинск, пр. Победы, 238
+          lat: 55.185658,
+          lng: 61.369658,
+          info: "<div id='content'><h2>пр. Победы, 238</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_9017d5f437a68902dee1403cc81caa9c.jpg'></div>"
+        },
+        { // Челябинск, мкр. Вишневая горка
+          lat: 55.125272, 
+          lng: 61.264456,
+          info: "<div id='content'><h2>мкр. Вишневая горка</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_9a3030b7a8abee69cbf7bc615958905a.jpg'></div>"
+        },
+        { // Магнитогорск, ул. Жукова, 1/1
+          lat: 53.362789,
+          lng: 58.972240,
+          info: "<div id='content'><h2>ул. Жукова, 1/1</h2>Магнитогорск, Челябинская область<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_34bc104e1e4e3a5dc6c2aea2f84f9aaa.jpg'></div>"
+        },     
+        { // Магнитогорск, Песчаная, 1
+          lat: 53.457171,
+          lng: 58.984079,
+          info: "<div id='content'><h2>ул. Песчаная, 1</h2>Магнитогорск, Челябинская область<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_dd49f5110bca1f118aab0e313a3d6c2d.jpg'></div>"
+        },
+        { // Челябинск, ул. Салавата Юлаева, 25а (школа №129)
+          lat: 55.174145, 
+          lng: 61.295934,
+          info: "<div id='content'><h2>ул. Салавата Юлаева, 25а (школа №129)</h2>Челябинск<br><br><img src='https://marvie.dev.veliteq.com/ddhl/crop_345_215_a32284f0422855fed152fa3e904a7057.jpg'></div>"
+        }
+      ];
+
+      var labels = [
+        'Славы, 16',
+        'Копейское шоссе, 39б',
+        '3-го Интернационала, 61',
+        'Коммунистическая, 7',
+        'Благодатово',
+        'Российская, 258',
+        'Бейвеля, 116',
+        'Победы, 238',
+        'Вишневая горка',
+        'Жукова, 1/1',
+        'Песчаная, 1',
+        'Салавата Юлаева, 25а'
+      ];
+    </script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXjaYYKiKNUjwEmL1DKWdIABbACjjheB0&callback=initMap">
+    </script>
+  </body>
+</html>
